@@ -1,9 +1,125 @@
 <!DOCTYPE html>
 <html lang="en">
-    <head>
-        <title>DELI-VERY</title>
-    </head>
-    <body>
-        <h1>Hello World!!!</h1>
-    </body>
+  <head>
+    <title>Order burgers here!</title>
+    <meta charset="utf-8"/>
+    <link rel="stylesheet" type="text/css" href="css/style.css">
+  </head>
+  <body>
+    <main>
+
+      <section class="header">
+        <image src="https://mb.cision.com/Public/226/9381246/a9c6310537c645e8_800x800ar.jpg" id="headerimg">
+        <h1><span id="headertext">Welcome to BurgerHeaven online</span></h1>
+
+      </section>
+
+
+      
+      <section class="burgerclass">
+        <h3>Select burger</h3>
+        <p>This is where you exexute burger selection</p>
+
+        
+        <div class="wrapper">
+          <div class="box a">
+            <th>Big king XL</th>
+          <p><image src="https://burgerking.se/uploads/bkproductadmin/related/stora-produktbilder/big-king-xl-stor.jpg" width="250"></p>
+            <li>750kcl</li>
+            <li>Contains Meat</li>
+            <li>Contain <span id="ingredient">gluten</span></li>    
+          </div>
+          
+          <div class="box b">
+            <th>Halloumi king</th>
+          <p><image src="https://burgerking.se/uploads//bkproductadmin/mainteaser/chicken_veggie/halloumi-king-stor.jpg" width="250"></p>
+            <li>700kcl</li>
+            <li>Contains Halloumi</li>
+            <li>Contain <span id="ingredient">gluten</span></li>
+          </div>
+          
+          <div class="box c">
+            <th>Crispy chicken</th>
+            <p><image src="https://burgerking.se/uploads/bkproductadmin/related/stora-produktbilder/crispychicken-stor-20150218.jpg" width="250"></p>
+            <li>600kcl</li>
+            <li>Contains chicken</li>
+            <li>Contain <span id="ingredient">gluten</span></li>
+          </div>
+        </div>
+
+
+
+        
+      </section>
+      <section class="CustomerInformation">
+
+        <h3>Customer information</h3>
+        <p>This is where you provide necessary information</p>
+
+        <form>
+
+          <p>
+            <label for="full name">Full name</label><br>
+            <input type="text" id="full name" name="fn" required="required" placeholder="First- and Last name">
+          </p>
+          <p>
+            <label for="email">E-mail</label><br>
+            <input type="email" id="email" name="em" required="required" placeholder="E-mail address">
+          </p>
+          <p>
+            <label for="street">Street</label><br>
+            <input type="text" id="street" name="st" required="required" placeholder="Street name">
+          </p>
+          <p>
+            <label for="house">House</label><br>
+            <input type="number" id="house" name="hs" required="required" placeholder="House number">
+          </p>
+          <p>
+            <label for="Payment">Payment options</label><br>
+            <select id="Payment" name="paym">
+              <option>Credit card</option>
+              <option>Paypal</option>
+              <option>Swish</option>
+              <option>Pay later</option>
+            </select>
+          </p>
+          <p>
+            <label for="gender">Gender</label><br>
+          <p>
+            <input type="radio" id="Male" name="sex">
+            <label for="Male">Male</label>
+          </p>
+          <p>
+            <input type="radio" id="Female" name="sex">
+            <label for="Female">Female</label>
+          </p>
+          <p>
+            <input type="radio" id="Non-binary" name="sex">
+            <label for="Non-binary">Non-binary</label>
+          </p>
+          <p>
+            <input type="radio" id="Undisclosed" name="sex" checked="checked">
+            <label for="Undisclosed">Undisclosed</label>
+          </p>
+        </form>
+
+        <section class="button">
+          <button type="submit"><img src="https://www.festisite.com/static/partylogo/img/logos/burger-king.png" width="25"> Send Info</button>
+        </section>
+
+      </section>
+
+
+
+
+
+
+    </main>
+
+    <footer>
+      <hr>
+      <p>&copy 2018 Hypothetical Burgers Inc.</p>
+    </footer>
+
+  </body>
 </html>

@@ -1,0 +1,91 @@
+@import url('https://fonts.googleapis.com/css?family=Lobster');
+@import url('https://fonts.googleapis.com/css?family=Anton');
+
+.header {
+    height: 200px;
+    overflow:hidden
+}
+
+#headertext {
+    position: absolute;
+    font-family: 'Anton', cursive;
+    margin: 20px;
+    font-size: 30pt;
+    margin-top: -60vw;
+    padding: 1px 100px 4px;
+}
+
+#headerimg {
+    width: 100%;
+    height: auto;
+    opacity: 0.5;
+}
+
+body {
+  font-family: 'Lobster', cursive;
+  font-size: 15pt;
+   background-color: white;
+}
+
+.burgerclass {
+   background-color: black;
+   color: white;
+   margin: 20px;
+   border: 4px solid red;
+   padding: 1px 23px 4px;
+   
+}
+
+#ingredient {
+  font-family: 'Anton', sans-serif;
+  font-size: 25pt;
+  text-transform: uppercase;
+  color: red;
+}
+
+.CustomerInformation {
+    margin: 20px;
+    border: 4px dotted black;
+    border-radius: 20px;
+    padding: 1px 23px 4px;
+}
+
+button:hover {
+     background-color: blue;
+     cursor: pointer;
+}
+
+.table {
+  width: 50%;
+  margin: 50px;
+}
+
+.button {
+  margin: 50px;
+}
+
+
+
+
+
+
+.wrapper {
+     display: grid;
+     grid-gap: 10px;
+     grid-template-columns: 230px 230px 230px;
+ }
+
+.box {
+     font-size: 14pt;
+ }
+
+ .a {
+
+     grid-column: 1;
+ }
+ .b {
+     grid-column: 2;
+ }
+ .c {
+     grid-column: 3;
+ }
