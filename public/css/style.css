@@ -3,13 +3,13 @@
 
 .header {
     height: 200px;
-    overflow:hidden
+    overflow:hidden;
+    margin: 20px;
 }
 
 #headertext {
     position: absolute;
     font-family: 'Anton', cursive;
-    margin: 20px;
     font-size: 30pt;
     margin-top: -60vw;
     padding: 1px 100px 4px;
@@ -27,16 +27,9 @@ body {
    background-color: white;
 }
 
-.burgerclass {
-   background-color: black;
-   color: white;
-   margin: 20px;
-   border: 4px solid red;
-   padding: 1px 23px 4px;
-   
-}
 
-#ingredient {
+
+#allergies {
   font-family: 'Anton', sans-serif;
   font-size: 25pt;
   text-transform: uppercase;
@@ -60,7 +53,7 @@ button:hover {
   margin: 50px;
 }
 
-.button {
+#button {
   margin: 50px;
 }
 
@@ -69,23 +62,61 @@ button:hover {
 
 
 
-.wrapper {
+
+#writeInfo {
+    display: grid;
+    grid-gap: 10px;
+    grid-template-columns: auto;
+    padding: 10px;
+}
+
+
+
+
+.burgerclassJS {
+   background-color: black;
+   color: white;
+   margin: 20px;
+   margin-top: 0px;
+   border: 4px solid red;
+   padding: 1px 23px 4px;
+}
+#burgersGridJS {
      display: grid;
      grid-gap: 10px;
-     grid-template-columns: 230px 230px 230px;
- }
+     grid-template-columns: auto auto auto;
+     padding: 10px;
+}
 
-.box {
-     font-size: 14pt;
- }
+.burgerclassVue {
+   background-color: black;
+   color: white;
+   margin: 20px;
+   margin-top: 0px;
+   border: 4px solid red;
+   padding: 1px 23px 4px;
+}
+#burgersGridVue {
+     display: grid;
+     grid-gap: 10px;
+     grid-template-columns: auto auto auto;
+     padding: 10px;
+}
 
- .a {
 
-     grid-column: 1;
- }
- .b {
-     grid-column: 2;
- }
- .c {
-     grid-column: 3;
- }
+.orderConfJS {
+    margin: 20px;
+    border-radius: 20px;
+    padding: 1px 23px 4px;
+    font-family: 'Time new roman', cursive;
+    font-size: 14pt;
+}
+.orderConfVUE {
+    margin: 20px;
+    border-radius: 20px;
+    padding: 1px 23px 4px;
+    font-family: 'Time new roman', cursive;
+    font-size: 14pt;
+}
+
+

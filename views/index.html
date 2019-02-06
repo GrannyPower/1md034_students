@@ -1,119 +1,138 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
+  <head>    
     <title>Order burgers here!</title>
     <meta charset="utf-8"/>
     <link rel="stylesheet" type="text/css" href="css/style.css">
+    <script type="text/javascript" src="/js/menu.js"></script>
+    <script type="text/javascript" src="/js/js_script.js" defer></script>
+    <script src="https://vuejs.org/js/vue.js" defer></script>
+    <script src="js/vue_script.js" defer></script>
+    <script src="http://localhost:8098"></script>
   </head>
   <body>
     <main>
 
+
+      
       <section class="header">
         <image src="https://mb.cision.com/Public/226/9381246/a9c6310537c645e8_800x800ar.jpg" id="headerimg">
-        <h1><span id="headertext">Welcome to BurgerHeaven online</span></h1>
+          <h1><span id="headertext">Welcome to BurgerHeaven online</span></h1>
 
       </section>
 
 
       
-      <section class="burgerclass">
+      <section class="burgerclassJS">
         <h3>Select burger</h3>
         <p>This is where you exexute burger selection</p>
-
-        
-        <div class="wrapper">
-          <div class="box a">
-            <th>Big king XL</th>
-          <p><image src="https://burgerking.se/uploads/bkproductadmin/related/stora-produktbilder/big-king-xl-stor.jpg" width="250"></p>
-            <li>750kcl</li>
-            <li>Contains Meat</li>
-            <li>Contain <span id="ingredient">gluten</span></li>    
-          </div>
-          
-          <div class="box b">
-            <th>Halloumi king</th>
-          <p><image src="https://burgerking.se/uploads//bkproductadmin/mainteaser/chicken_veggie/halloumi-king-stor.jpg" width="250"></p>
-            <li>700kcl</li>
-            <li>Contains Halloumi</li>
-            <li>Contain <span id="ingredient">gluten</span></li>
-          </div>
-          
-          <div class="box c">
-            <th>Crispy chicken</th>
-            <p><image src="https://burgerking.se/uploads/bkproductadmin/related/stora-produktbilder/crispychicken-stor-20150218.jpg" width="250"></p>
-            <li>600kcl</li>
-            <li>Contains chicken</li>
-            <li>Contain <span id="ingredient">gluten</span></li>
-          </div>
-        </div>
-
-
-
-        
+        <div id="burgersGridJS"></div> 
       </section>
-      <section class="CustomerInformation">
 
-        <h3>Customer information</h3>
-        <p>This is where you provide necessary information</p>
+      <div id="whole">
 
-        <form>
+        <section class="burgerclassVue">
+          <h3>Select burger</h3>
+          <p>This is where you exexute burger selection</p>
+          <div id="burgersGridVue">
+            <div v-for="burgerVue in burgersVue">
+              <p>{{ burgerVue.name }}</p>
+              <img :src="burgerVue.img" width="300">
+              <ul>
+                <li>{{ burgerVue.kCal }}</li>
+                <li v-if="burgerVue.lactose">Contains <span id="allergies">lactose</span></li>
+                <li v-if="burgerVue.gluten">Contains <span id="allergies">gluten</span></li>
+              </ul>
+              <p>Add to order:<input type="checkbox" :id="burgerVue.name" name="burgerOrders"></p>
+            </div>
 
-          <p>
-            <label for="full name">Full name</label><br>
-            <input type="text" id="full name" name="fn" required="required" placeholder="First- and Last name">
-          </p>
-          <p>
-            <label for="email">E-mail</label><br>
-            <input type="email" id="email" name="em" required="required" placeholder="E-mail address">
-          </p>
-          <p>
-            <label for="street">Street</label><br>
-            <input type="text" id="street" name="st" required="required" placeholder="Street name">
-          </p>
-          <p>
-            <label for="house">House</label><br>
-            <input type="number" id="house" name="hs" required="required" placeholder="House number">
-          </p>
-          <p>
-            <label for="Payment">Payment options</label><br>
-            <select id="Payment" name="paym">
-              <option>Credit card</option>
-              <option>Paypal</option>
-              <option>Swish</option>
-              <option>Pay later</option>
-            </select>
-          </p>
-          <p>
-            <label for="gender">Gender</label><br>
-          <p>
-            <input type="radio" id="Male" name="sex">
-            <label for="Male">Male</label>
-          </p>
-          <p>
-            <input type="radio" id="Female" name="sex">
-            <label for="Female">Female</label>
-          </p>
-          <p>
-            <input type="radio" id="Non-binary" name="sex">
-            <label for="Non-binary">Non-binary</label>
-          </p>
-          <p>
-            <input type="radio" id="Undisclosed" name="sex" checked="checked">
-            <label for="Undisclosed">Undisclosed</label>
-          </p>
-        </form>
-
-        <section class="button">
-          <button type="submit"><img src="https://www.festisite.com/static/partylogo/img/logos/burger-king.png" width="25"> Send Info</button>
+            
+          </div> 
         </section>
 
-      </section>
+        
+        <section class="CustomerInformation">
 
+          <h3>Customer information</h3>
+          <p>This is where you provide necessary information</p>
 
+          <form id="orderForm">
 
+            <p>
+              <label for="fullName">Full name</label><br>
+              <input type="text" id="name" name="fn" required="required" placeholder="First- and Last name" v-model="fullName">
+            </p>
+            <p>
+              <label for="email">E-mail</label><br>
+              <input type="email" id="email" name="em" required="required" placeholder="E-mail address">
+            </p>
+            <p>
+              <label for="street">Street</label><br>
+              <input type="text" id="street" name="st" required="required" placeholder="Street name">
+            </p>
+            <p>
+              <label for="house">House</label><br>
+              <input type="number" id="house" name="hs" required="required" placeholder="House number">
+            </p>
+            <p>
+              <label for="payment">Payment options</label><br>
+              <select id="payment" name="paym">
+                <option>Credit card</option>
+                <option>Paypal</option>
+                <option>Swish</option>
+                <option>Pay later</option>
+              </select>
+            </p>
+            <p>
+              <label for="gender">Gender</label><br>
+            <p>
+              <input type="radio" id="male" name="sex" value="male">
+              <label for="male">Male</label>
+            </p>
+            <p>
+              <input type="radio" id="female" name="sex" value="female">
+              <label for="female">Female</label>
+            </p>
+            <p>
+              <input type="radio" id="nonBinary" name="sex" value="nonBinary">
+              <label for="nonBinary">Non-binary</label>
+            </p>
+            <p>
+              <input type="radio" id="undisclosed" name="sex" value="undisclosed" checked="checked">
+              <label for="undisclosed">Undisclosed</label>
+            </p>
+            
+            <section id="button">
+              <button type="submit" v-on:click="showOrder();">
+                <img src="https://www.festisite.com/static/partylogo/img/logos/burger-king.png" width="25"> Send Info
+              </button>
+            </section>
+            
+          </form>
+          <div>{{notFilled}}</div>
+        </section>
 
+                
+        <div class="orderConfJS">
+          <div id="orderConf"></div>
+        </div>
 
-
+        <div v-if="clicked" class="orderConfVUE">
+          <h1>Order Confirmation</h1>
+          <h3>Customer details</h3>
+          <div>Name: {{ name }}<div>
+          <div>Email: {{ email }}</div>
+          <div>Street: {{ street }}</div>
+          <div>House: {{ house }}</div>
+          <div>Payment: {{ payment }}</div>
+          <div>Gender: {{ gender }} </div>
+          <h3>Order Summary</h3>
+          <div v-for="order in orders">
+            <li>{{order}}</li>                
+          </div>
+        </div>
+        
+      </div>
     </main>
 
     <footer>
