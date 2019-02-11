@@ -91,8 +91,6 @@ showBurgers();
 function customerInfo() {
     var name   = document.getElementById("name").value;
     var email  = document.getElementById("email").value;
-    var street = document.getElementById("street").value;
-    var house  = document.getElementById("house").value;
     var payment = document.getElementById("payment").value;
     
     var radios = document.getElementsByName("sex");
@@ -111,7 +109,7 @@ function customerInfo() {
             burgersOrderd.push(burgerOrdersArray[i].id);
         }
     }
-    return new Array(name,email,street,house,payment,sex,burgersOrderd);
+    return new Array(name,email,payment,sex,burgersOrderd);
 }
 
 
@@ -147,22 +145,12 @@ function showOrderJS() {
     node.appendChild(subNode);
 
     subNode = document.createElement("DIV");
-    value = document.createTextNode("Street: "+array[2]);
+    value = document.createTextNode("Payment: "+array[2]);
     subNode.appendChild(value);
     node.appendChild(subNode);
 
     subNode = document.createElement("DIV");
-    value = document.createTextNode("House: "+array[3]);
-    subNode.appendChild(value);
-    node.appendChild(subNode);
-
-    subNode = document.createElement("DIV");
-    value = document.createTextNode("Payment: "+array[4]);
-    subNode.appendChild(value);
-    node.appendChild(subNode);
-
-    subNode = document.createElement("DIV");
-    value = document.createTextNode("Gender: "+array[5]);
+    value = document.createTextNode("Gender: "+array[3]);
     subNode.appendChild(value);
     node.appendChild(subNode);
 
@@ -173,9 +161,9 @@ function showOrderJS() {
     node.appendChild(subNode);
 
     subNode = document.createElement("DIV");
-    for(i=0; i<array[6].length; i++) {
+    for(i=0; i<array[4].length; i++) {
         subNode = document.createElement("LI");
- 	 			value = document.createTextNode(array[6][i]);
+ 	 			value = document.createTextNode(array[4][i]);
  		 		subNode.appendChild(value);
         node.appendChild(subNode);
     }

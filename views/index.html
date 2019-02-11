@@ -1,14 +1,19 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>    
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Order burgers here!</title>
-    <meta charset="utf-8"/>
     <link rel="stylesheet" type="text/css" href="css/style.css">
-    <script type="text/javascript" src="/js/menu.js"></script>
+    <link rel="stylesheet" href="css/deli-very.css">
+    <script src="https://vuejs.org/js/vue.js"></script>
+    
+    <script src="js/vue_script.js"                        defer></script>
+    <script src="/socket.io/socket.io.js"                 defer></script>
+    <script src="js/deli-very.js"                         defer></script>
+    <script type="text/javascript" src="/js/menu.js"      defer></script>
     <script type="text/javascript" src="/js/js_script.js" defer></script>
-    <script src="https://vuejs.org/js/vue.js" defer></script>
-    <script src="js/vue_script.js" defer></script>
-    <script src="http://localhost:8098"></script>
+
   </head>
   <body>
     <main>
@@ -35,7 +40,7 @@
           <h3>Select burger</h3>
           <p>This is where you exexute burger selection</p>
           <div id="burgersGridVue">
-            <div v-for="burgerVue in burgersVue">
+            <div v-for="burgerVue in burgerVue">
               <p>{{ burgerVue.name }}</p>
               <img :src="burgerVue.img" width="300">
               <ul>
@@ -60,19 +65,11 @@
 
             <p>
               <label for="fullName">Full name</label><br>
-              <input type="text" id="name" name="fn" required="required" placeholder="First- and Last name" v-model="fullName">
+              <input type="text" id="name" name="fn" required="required" placeholder="First- and Last name">
             </p>
             <p>
               <label for="email">E-mail</label><br>
               <input type="email" id="email" name="em" required="required" placeholder="E-mail address">
-            </p>
-            <p>
-              <label for="street">Street</label><br>
-              <input type="text" id="street" name="st" required="required" placeholder="Street name">
-            </p>
-            <p>
-              <label for="house">House</label><br>
-              <input type="number" id="house" name="hs" required="required" placeholder="House number">
             </p>
             <p>
               <label for="payment">Payment options</label><br>
@@ -101,9 +98,23 @@
               <input type="radio" id="undisclosed" name="sex" value="undisclosed" checked="checked">
               <label for="undisclosed">Undisclosed</label>
             </p>
+
+            <div>
+            <h1> Click in the map! </h1>
+            <a href="/dispatcher" target="_blank">Open dispatcher in new window</a>.
+            <div class="view-box">
+              <div id="dots" v-on:click="addOrder">
+                <div 
+                  v-for="(order, key) in orders"
+                  v-bind:style="{ left: order.details.x + 'px', top: order.details.y + 'px'}">
+                  T
+                </div>
+              </div>
+            </div>
+            </div>
             
             <section id="button">
-              <button type="submit" v-on:click="showOrder();">
+              <button type="submit" v-on:click="showOrder()">
                 <img src="https://www.festisite.com/static/partylogo/img/logos/burger-king.png" width="25"> Send Info
               </button>
             </section>
@@ -112,7 +123,7 @@
           <div>{{notFilled}}</div>
         </section>
 
-                
+        
         <div class="orderConfJS">
           <div id="orderConf"></div>
         </div>
@@ -121,18 +132,16 @@
           <h1>Order Confirmation</h1>
           <h3>Customer details</h3>
           <div>Name: {{ name }}<div>
-          <div>Email: {{ email }}</div>
-          <div>Street: {{ street }}</div>
-          <div>House: {{ house }}</div>
-          <div>Payment: {{ payment }}</div>
-          <div>Gender: {{ gender }} </div>
-          <h3>Order Summary</h3>
-          <div v-for="order in orders">
-            <li>{{order}}</li>                
+              <div>Email: {{ email }}</div>
+              <div>Payment: {{ payment }}</div>
+              <div>Gender: {{ gender }} </div>
+              <h3>Order Summary</h3>
+              <div v-for="order in orders">
+                <li>{{order}}</li>                
+              </div>
+            </div>
+            
           </div>
-        </div>
-        
-      </div>
     </main>
 
     <footer>
