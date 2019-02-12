@@ -61,7 +61,7 @@ function menuItem(name, kCal, lactose, gluten, img) {
         return node;
     }
     this.display = function() {
-  	    var node = document.createElement("P");
+  	    var node = document.createElement("DIV");
 		    node.appendChild(this.showName());
         node.appendChild(this.showIMG());
         node.appendChild(this.showInfo());
@@ -141,6 +141,11 @@ function showOrderJS() {
 
     subNode = document.createElement("DIV");
     value = document.createTextNode("Email: "+array[1]);
+    subNode.appendChild(value);
+    node.appendChild(subNode);
+
+    subNode = document.createElement("DIV");
+    value = document.createTextNode("Deliver to: "+ "TODO");
     subNode.appendChild(value);
     node.appendChild(subNode);
 

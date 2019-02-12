@@ -6,20 +6,24 @@
     <title>Order burgers here!</title>
     <link rel="stylesheet" type="text/css" href="css/style.css">
     <link rel="stylesheet" href="css/deli-very.css">
-    <script src="https://vuejs.org/js/vue.js"></script>
-    
-    <script src="js/vue_script.js"                        defer></script>
-    <script src="/socket.io/socket.io.js"                 defer></script>
-    <script src="js/deli-very.js"                         defer></script>
+
     <script type="text/javascript" src="/js/menu.js"      defer></script>
     <script type="text/javascript" src="/js/js_script.js" defer></script>
+    <script src="https://vuejs.org/js/vue.js">                  </script>    
+    <script src="/socket.io/socket.io.js"                 defer></script>
+    <script src="js/vue_script.js"                        defer></script>
+
+
 
   </head>
   <body>
     <main>
 
 
-      
+<div id="whole">
+
+
+      <!-- Showing header -->
       <section class="header">
         <image src="https://mb.cision.com/Public/226/9381246/a9c6310537c645e8_800x800ar.jpg" id="headerimg">
           <h1><span id="headertext">Welcome to BurgerHeaven online</span></h1>
@@ -27,35 +31,46 @@
       </section>
 
 
-      
+
+
+
+      <!-- Grid for showing burgers using JS -->
       <section class="burgerclassJS">
         <h3>Select burger</h3>
         <p>This is where you exexute burger selection</p>
         <div id="burgersGridJS"></div> 
       </section>
 
-      <div id="whole">
 
-        <section class="burgerclassVue">
-          <h3>Select burger</h3>
-          <p>This is where you exexute burger selection</p>
-          <div id="burgersGridVue">
-            <div v-for="burgerVue in burgerVue">
-              <p>{{ burgerVue.name }}</p>
-              <img :src="burgerVue.img" width="300">
-              <ul>
-                <li>{{ burgerVue.kCal }}</li>
-                <li v-if="burgerVue.lactose">Contains <span id="allergies">lactose</span></li>
-                <li v-if="burgerVue.gluten">Contains <span id="allergies">gluten</span></li>
-              </ul>
-              <p>Add to order:<input type="checkbox" :id="burgerVue.name" name="burgerOrders"></p>
-            </div>
 
-            
-          </div> 
-        </section>
 
-        
+
+
+      <!-- Grid for showing burgers using VUE -->
+      <section class="burgerclassVue" id="burgerVue">
+        <h3>Select burger</h3>
+        <p>This is where you exexute burger selection</p>
+        <div id="burgersGridVue">
+          <div v-for="burgerVue in burgersVue">
+            <p>{{ burgerVue.name }}</p>
+            <img :src="burgerVue.img" width="300">
+            <ul>
+              <li>{{ burgerVue.kCal }}</li>
+              <li v-if="burgerVue.lactose">Contains <span id="allergies">lactose</span></li>
+              <li v-if="burgerVue.gluten">Contains <span id="allergies">gluten</span></li>
+            </ul>
+            <p>Add to order:<input type="checkbox" :id="burgerVue.name" name="burgerOrders"></p>
+          </div>          
+        </div> 
+      </section>
+
+
+
+
+
+
+      <!-- Customer information section -->
+      <div id="input">
         <section class="CustomerInformation">
 
           <h3>Customer information</h3>
@@ -99,49 +114,63 @@
               <label for="undisclosed">Undisclosed</label>
             </p>
 
-            <div>
             <h1> Click in the map! </h1>
             <a href="/dispatcher" target="_blank">Open dispatcher in new window</a>.
             <div class="view-box">
-              <div id="dots" v-on:click="addOrder">
-                <div 
-                  v-for="(order, key) in orders"
-                  v-bind:style="{ left: order.details.x + 'px', top: order.details.y + 'px'}">
+              <div id="dots" v-on:click="displayOrder">
+                <div
+                  v-bind:style="{ left: tmpAdress.x + 'px', top: tmpAdress.y + 'px'}">
                   T
                 </div>
               </div>
             </div>
-            </div>
             
-            <section id="button">
-              <button type="submit" v-on:click="showOrder()">
-                <img src="https://www.festisite.com/static/partylogo/img/logos/burger-king.png" width="25"> Send Info
-              </button>
-            </section>
+            
+
+            <button id="button" v-on:click="showOrder(); addOrder();">
+              <img src="https://www.festisite.com/static/partylogo/img/logos/burger-king.png" width="25"> Send Info
+            </button>
+              
             
           </form>
-          <div>{{notFilled}}</div>
         </section>
 
-        
-        <div class="orderConfJS">
-          <div id="orderConf"></div>
-        </div>
 
-        <div v-if="clicked" class="orderConfVUE">
-          <h1>Order Confirmation</h1>
-          <h3>Customer details</h3>
-          <div>Name: {{ name }}<div>
-              <div>Email: {{ email }}</div>
-              <div>Payment: {{ payment }}</div>
-              <div>Gender: {{ gender }} </div>
-              <h3>Order Summary</h3>
-              <div v-for="order in orders">
-                <li>{{order}}</li>                
-              </div>
-            </div>
-            
+
+
+
+
+
+
+
+        <!-- Showing costumer details using JS -->
+        <section>
+          <div class="orderConfJS">
+            <div id="orderConf"></div>
           </div>
+        </section>
+
+
+
+        <!-- Showing costumer details using VUE -->
+        <section>
+          <div v-if="clicked" class="orderConfVUE">
+            <h1>Order Confirmation</h1>
+            <h3>Customer details</h3>
+            <div>Name: {{ name }}</div>
+            <div>Email: {{ email }}</div>
+            <div>Deliver to: {{ tmpAdress.x }} x / {{ tmpAdress.y }} y</div>
+            <div>Payment: {{ payment }}</div>
+            <div>Gender: {{ gender }} </div>
+            <h3>Order Summary</h3>
+            <div v-for="order in burgerOrders">
+              <li>{{order}}</li>                
+            </div>
+          </div>
+        </section>
+      </div>
+
+      </div>
     </main>
 
     <footer>
